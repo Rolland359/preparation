@@ -1,0 +1,40 @@
+PROCEDURE PREPARATION 13H
+
+
+00-Création du Dossier modèle:
+=> copier le dossier 'xxxx' et le renomet en %%DOSSIER%%
+SRC:  "Z:\BuildingMap-2024\13H\Prepa\xxx"
+DEST: "Z:\BuildingMap-2024\13H\Prepa\%%DOSSIER%%"
+
+Rmq : %%DOSSIER%% est un variable qui désigne le dossier en cours de préparation
+
+1. COPIE DU FICHE PATRIMONIALE
+SRC: "Z:\BuildingMap-2024\13H\DB\%%DOSSIER%%\1. Pièces Génrales\1.1. Documents généraux\1.1.1. Fiches patrimoniales\" ==> izay fichier excel misy hoe 'FP' ou 'Fiche '
+DEST: "Z:\BuildingMap-2024\13H\Prepa\%%DOSSIER%%"
+
+2. REMPLISSAGE DU GRILLE DE CONTROLE:
+Feuilles = ["Contrôle PM","Contrôle 2D","Contrôle 3D"]
+for feuille in Feuilles:
+	WorkBook[feuille]["C2"]=%%DOSSIER%%
+
+3. REMPLISSAGE DU FP, création de l'onglet REVET avec les revêtement par regroupé Bâtiment (en cours de dvp)
+- Recherche dans la bib du gabarit clients clé:onglet social tableau de recherche : Bib gabarit
+
+
+4. COPIE DES DB DANS DOSSIER PREPARE :
+
+	Photos clients:
+SRC:"Z:\BuildingMap-2024\13H\DB\%%DOSSIER%%\1. Pièces Génrales\1.1. Documents généraux\1.1.2. Photos\"
+DEST:"Z:\BuildingMap-2024\13H\Prepa\%%DOSSIER%%\BATIMENT 01\Photos\Photos client\"
+
+	Masse-Topo-VRD:
+SRC: "Z:\BuildingMap-2024\13H\DB\%%DOSSIER%%\1. Pièces Génrales\1.2. Sites et architecture\1.2.1. MasseTopoVRD"
+DEST: "Z:\BuildingMap-2024\13H\Prepa\%%DOSSIER%%\BATIMENT 01\Plans\Plans complémentaires\Plans de masse"
+
+	Façades et coupes:
+SRC: "Z:\BuildingMap-2024\13H\DB\%%DOSSIER%%\1. Pièces Génrales\1.2. Sites et architecture\1.2.3. Plans coupes façades
+DEST: "Z:\BuildingMap-2024\13H\Prepa\%%DOSSIER%%\BATIMENT 01\Plans\Plans complémentaires\Façade et coupes"
+
+	Corps d'état technique:
+SRC: "Z:\BuildingMap-2024\13H\DB\%%DOSSIER%%\1. Pièces Génrales\1.3. Corps d'états techniques"
+DEST: "Z:\BuildingMap-2024\13H\Prepa\%%DOSSIER%%\BATIMENT 01\Plans\"
