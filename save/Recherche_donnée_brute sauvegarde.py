@@ -35,7 +35,7 @@ def recherche_donnee_brute(projet,bc, parametre, dossier="",date = "2024"):
                 trouve = 1
                 dossier_source = os.path.join(root, dir)
                 print(dossier_source)
-                return dossier_source
+                break
             elif dossier in dir or dossier.replace("0","") == dir:
                 if dans_elif == 0: print("Ce pourrait-il que le dossier que vous chercher soit dans l'un des dossier en bas :")
                 dans_elif = 1
