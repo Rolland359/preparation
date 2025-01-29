@@ -4,6 +4,7 @@ import shutil
 import sys
 import openpyxl
 import zipfile
+import getpass
 import threading
 import concurrent.futures
 from Recherche_projet import recherche_projet
@@ -91,7 +92,7 @@ def copier_photos_et_autres(source, destination, type_copie):
     else:
         print(f"Pas de {type_copie}")
 
-
+nom = "M"+getpass.getuser()
 espace = "3D"
 winrar = "C:/Program Files/WinRAR/WinRAR.exe"
 source_dossier_xxx = "C:/Futurmap/Outils/Preparation/Gestion de Patrimoine/XXXX"
@@ -102,7 +103,6 @@ if __name__=="__main__":
 
     date = str(input("Entrer la date [2024-2025]: "))
     
-
     # Recupérer les information de base via l'utilisateur :
     saisie = input("Entrez le PROJET BC DOSSIER : ").split(" ")
     projet, bc, dossier = saisie[0],saisie[1],saisie[2]
@@ -117,8 +117,8 @@ if __name__=="__main__":
 
         source_initial_db = lien_projet+"/1_Donnees_Brutes/"
 
-        destination_preparation = "D:/BuildingMap-2025/"+nom_projet+"/2_Preparation/"+formatage_dossier(dossier)
-        destination_donnée_brute = "D:/BuildingMap-2025/"+nom_projet+"/1_Donnees_Brutes/"+formatage_dossier(dossier)
+        destination_preparation = f"D:/{nom}/BuildingMap-2025/"+nom_projet+"/2_Preparation/"+formatage_dossier(dossier)
+        destination_donnée_brute = f"D:/{nom}/BuildingMap-2025/"+nom_projet+"/1_Donnees_Brutes/"+formatage_dossier(dossier)
 
         # Copie du dossier xxx du disque C:/ vers le disque D:/
         copie_donnees(source_dossier_xxx,destination_preparation,use_xcopy=False)
