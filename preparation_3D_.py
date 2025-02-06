@@ -7,21 +7,7 @@ import zipfile
 import getpass
 import threading
 import concurrent.futures
-from Recherche_projet import recherche_projet
-
-def formatage_dossier(dossier):
-    """Formate le dossier sur 4 caractères avec des zéros en préfixe."""
-    return str(dossier).zfill(4)
-
-def recherche_db(dossier, parent):
-    """Recherche un dossier dans un répertoire parent."""
-    dossier_formate = formatage_dossier(dossier)
-    for root, dirs, _ in os.walk(parent):  # Ignorer les fichiers
-        for dire in dirs:
-            if dossier_formate == formatage_dossier(dire):
-                return os.path.join(root, dire)
-    print(f"Aucun dossier {dossier} trouvé dans les données brutes...")
-    return None
+from Recherche_projet import recherche_db,recherche_projet,get_user_input, formatage_dossier
 
 def copie_donnees(source, destination, use_xcopy=False):
     """Copie un dossier source vers une destination (thread-safe)."""
@@ -101,11 +87,10 @@ if __name__=="__main__":
     os.system("color a")
     os.system("title R_Prepa3D ")
 
-    date = str(input("Entrer la date [2024-2025]: "))
+    date, saisie = get_user_input()
     
     # Recupérer les information de base via l'utilisateur :
-    saisie = input("Entrez le PROJET BC DOSSIER : ").split(" ")
-    projet, bc, dossier = saisie[0],saisie[1],saisie[2]
+    projet, bc, dossier = saisie[0],saisie[1],format(saisie[2])
 
     # recupere le lien et le nom du projet :
     lien_projet, nom_projet = recherche_projet(projet,bc,espace=espace,date=date)

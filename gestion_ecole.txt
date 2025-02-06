@@ -1,0 +1,8 @@
+GESTION ECOLAGE-BUDGET ETABLISSEMENT ECOLE :
+- presence (sann pointeur)
+- voaloha ve ilay izy sa tsy voaloha
+- reminder ana akizy tokony handoha ecolage satria par date farany nandoavany ecolage
+- affichena daholo ilay liste ana akizy de afaka imprimena
+- mis à jour na base de donnée, [mampiditra anaranakizy vaovao, mampiditra sary, mamafa ligne]
+
+-> Mamorona base de donnée

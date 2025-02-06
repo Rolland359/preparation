@@ -5,8 +5,8 @@ import shutil
 import getpass
 import threading
 import subprocess
-from Recherche_projet import recherche_projet
-from preparation_3D_ import recherche_db, formatage_dossier
+from Recherche_projet import recherche_projet,formatage_dossier, get_user_input
+from preparation_3D_ import recherche_db
 
 # Constantes pour les chemins de fichiers
 REVIT_PATH = "C:/Program Files/Autodesk/Revit 2022/Revit.exe"
@@ -22,11 +22,6 @@ def open_with_apk(apk, file):
         print(f"Le fichier \"{os.path.basename(file)}\" a été ouvert avec succès.")
     except subprocess.CalledProcessError as e:
         print(f"Erreur rencontrée lors de l'ouverture de {file} avec {apk}: {e}")
-
-def get_user_input():
-    date = input("Entrer la date [2024-2025]: ")
-    saisie = input("Entrez le PROJET BC DOSSIER : ").split(" ")
-    return date, saisie
 
 def copy_prepared_files(source, destination):
     print("Début du copie des fichier préparé ...")

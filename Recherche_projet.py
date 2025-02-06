@@ -1,6 +1,20 @@
 # coding: "utf-8"
 import os
 
+def formatage_dossier(dossier):
+    """Formate le dossier sur 4 caractères avec des zéros en préfixe."""
+    return str(dossier).zfill(4)
+
+def recherche_db(dossier, parent):
+    """Recherche un dossier dans un répertoire parent."""
+    dossier_formate = formatage_dossier(dossier)
+    for root, dirs, _ in os.walk(parent):  # Ignorer les fichiers
+        for dire in dirs:
+            if dossier_formate == formatage_dossier(dire):
+                return os.path.join(root, dire)
+    print(f"Aucun dossier {dossier} trouvé dans les données brutes...")
+    return None
+
 def recherche_projet(projet, bc, espace="3D", date="2024"):
     """
     Recherche un projet dans le disque Q: en utilisant le nom du projet,
@@ -32,6 +46,12 @@ def recherche_projet(projet, bc, espace="3D", date="2024"):
         return None, None # Retourner None pour les deux
     else:
         return liste_projet[0], os.path.basename(liste_projet[0]) # Retourner le chemin complet et le nom du projet
+
+
+def get_user_input():
+    date = input("Entrer la date [2024-2025]: ")
+    saisie = input("Entrez le PROJET BC DOSSIER : ").split(" ")
+    return date, saisie
 
 if __name__ == "__main__":
     os.system("color a")
